@@ -1,0 +1,40 @@
+DBeta Generator
+--------------------
+Authors: Originally written by Lindley Winslow (lwinslow@physics.ucla.edu) in May 2012, changes made by Christoph Aberle (aberlec@physics.ucla.edu), September 2013.
+ 
+Description: The code generates energies and directions of two electrons from Double-Beta Decay for a number of interesting isotopes. As an input we use energy distributions and angular correlations calculated in Phys. Rev. C 85, 034316 (2012). The user can choose between standard double-beta decay (2NuBB) and neutrinoless double-beta decay (0NuBB). The output is a HEPEVT file which, for each generated event, contains the particle type (electrons in our case), the electron directions and the momenta. The HEPEVT file can then be used as a direct input for Geant4 simulations. 
+
+Note: We have data for 116Cd, 128Te, 130Te and 136Xe. For 160Gd only 0NuBB input data is currently available in this package but the authors of the paper can provide the data if needed. We also note that 116Cd has been more thoroughly tested than the other isotopes. 
+
+Usage: 	1) CLHEP and ROOT are needed. startscript.sh has to be adjusted to set some environment variables. 
+ 	2) source startscript.sh
+	3) There is a small input section in DBeta.cc which has to be adjusted, depending on the isotope used. 
+	3) make clean
+        4) make
+        5) ./DBeta 1000 1   : This runs the generator and produces 1000 events. The second argument is used to switch between 2NuBB (0) and 0NuBB (1).
+	6) The generator creates the HEPEVT file hepevt.EVT and a root file DBeta_Debug.root for debugging purposes. 
+
+
+
+Notes for Developers: 	1) The authors of the paper also provided files which were calculated with the single state domination (SSD) hypothesis. 
+			   These files are not used here.  
+			2) The naming scheme for the files has been changed for practical reasons from what the authors of the paper use. 
+			   For each isotope we use 6 files explained below. 
+				I)  Angular correlations for 2NuBB
+				    original names: isotope_name + "correlation2nu.dat" 
+				    new names: isotope_name + "correlationsfs.dat"
+				II) Angular correlations for 0NuBB
+				    original names: isotope_name + "correlation0nu.dat"
+				    new names: isotope_name + "correlationsfs_0nuBB.dat"
+				III)Single electron energy distribution for 2NuBB
+				    original names: isotope_name + "ses2nu.dat"
+				    new names: isotope_name + "sessfs.dat"
+				IV) Single electron energy distribution for 0NuBB
+				    original names: isotope_name + "ses0nu.dat"
+ 				    new names: isotope_name + "sessfs_0nuBB.dat"
+				V)  Distribution of E1 + E2 for 2NuBB 
+				    original names: isotope_name + "sums2nu.dat"
+				    new names: isotope_name + "sumssfs.dat"
+				VI) 2D differential probability for 2NuBB in the format (index1, index2, E1, E2, diff. probability) 
+				    original names: isotope_name + "twodimspectsfs.dat"   
+				    These files have still the original names.   
