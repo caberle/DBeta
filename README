@@ -38,3 +38,6 @@ Notes for Developers: 	1) The authors of the paper also provided files which wer
 				VI) 2D differential probability for 2NuBB in the format (index1, index2, E1, E2, diff. probability) 
 				    original names: isotope_name + "twodimspectsfs.dat"   
 				    These files have still the original names.   
+
+Future Work:
+Contact authors to get complete set of isotopes. --Lindley - 11 Sept 2013
